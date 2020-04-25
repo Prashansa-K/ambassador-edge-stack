@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: secure-host
+  namespace: ambassador
+  labels:
+    product: aes
+spec:
+  hostname: ambassador.getpostman-beta.com
+  acmeProvider:
+    authority: none
+  

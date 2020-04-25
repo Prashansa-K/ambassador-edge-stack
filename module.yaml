@@ -1,0 +1,31 @@
+---
+apiVersion: getambassador.io/v2
+kind: Module
+metadata:
+  name: ambassador
+spec:
+  config:
+    x_forwarded_proto_redirect: true
+    use_remote_address: false
+    xff_num_trusted_hops: 1
+
+
+
+
+# The X-Forwarded-Proto (XFP) header is a de-facto standard header for
+# identifying the protocol (HTTP or HTTPS) that a 
+# client used to connect to your proxy or load balancer.
+#
+# x_forwarded_proto_redirect: true
+# TLS won't be terminated at ALB. 
+# Original HTTPS request is directly passed to the ambassador.
+#
+#
+# The X-Forwarded-For (XFF) header is a de-facto standard header for 
+# identifying the originating IP address of a client connecting 
+# to a web server through an HTTP proxy or a load balancer.
+#
+# xff_num_trusted_hops: controls how Envoy sets the 
+# trusted client IP address of a request.
+# To preserve the original client address,
+# set xff_num_trusted_hops = No. of L7 load balancers in front of AES

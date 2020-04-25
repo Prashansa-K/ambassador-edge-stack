@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: ambassador
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-pod
+        image: nginx
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: nginx-service
+  namespace: ambassador
+spec: 
+  selector: 
+    app: nginx
+  ports:
+    - name: nginxweb
+      port: 80
+      targetPort: 80
+

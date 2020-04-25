@@ -1,0 +1,21 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: ambassador
+  name: quote-ingress
+  namespace: ambassador
+spec:
+  rules:
+   - http:
+       paths:
+       - path: /quote/
+         backend:
+           serviceName: quote
+           servicePort: 80
+       - path: /nginx
+         backend:
+           serviceName: nginx-service
+           servicePort: 80
+       
